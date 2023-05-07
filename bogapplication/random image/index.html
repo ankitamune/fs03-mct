@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog Page</title>
+    <style>
+      /* CSS for the card layout */
+      .card {
+        width: 80%;
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 16px;
+        background-color: #f5f5f5;
+      }
+
+      .card-header a {
+        text-decoration: none;
+        font-size: 20px;
+        color: #000;
+      }
+
+      .card-header a:hover {
+        color: #888;
+      }
+
+      .card-image {
+        position: relative;
+        height: 300px;
+        overflow: hidden;
+      }
+
+      .card-image img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      .card-content {
+        padding: 16px;
+        text-align: center;
+      }
+
+      .card-content h2 {
+        font-size: 32px;
+        margin: 0 0 16px;
+      }
+
+      .card-content p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.5;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+        <a href="home.html"><button> back</button></a>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a href="index.html"><i class="fa fa-chevron-left"></i>next Image</a>
+      </div>
+      <div class="card-image">
+        <img id="blog-image" src="https://via.placeholder.com/1200x800" width="500px" height="400px">
+      </div>
+      <div class="card-content">
+        <h2 id="blog-title"></h2>
+        <p id="blog-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque consectetur perspiciatis, qui id ipsa aspernatur reiciendis ad pariatur laborum,
+             maxime at expedita quis? Iusto quia mollitia quasi ipsum, obcaecati vero?</p>
+      </div>
+    </div>
+
+    <script>
+      // Fetch a random image from the Unsplash API
+      fetch('https://api.unsplash.com/photos/random?client_id=38cOzj-2n-q1A3cLaoLbSZabN_-PxDbmpEq_qkJy_jw')
+        .then(response => response.json())
+        .then(data => {
+          // Set the image source to the random image URL
+          const image = document.getElementById('blog-image');
+          image.src = data.urls.regular;
+        })
+        .catch(error => {
+          console.error('Error fetching random image:', error);
+        });
+
+      // Set the blog title and description
+      const title = document.getElementById('blog-title');
+      const description = document.getElementById('blog-description');
+      title.textContent = 'Blog Title';
+      description.textContent = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque consectetur perspiciatis, qui id ipsa aspernatur reiciendis ad pariatur laborum,maxime at expedita quis? Iusto quia mollitia quasi ipsum, obcaecati vero?';
+    //   window.location.href = "blog_page.html";
+    </script>
+  </body>
+</html>
